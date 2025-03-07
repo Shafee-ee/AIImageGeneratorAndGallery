@@ -80,6 +80,7 @@ body {
 
 .gallery-grid {
     display: grid;
+    width: 100%;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 10px;
     padding: 20px;
@@ -99,4 +100,19 @@ body {
 .gallery-grid img:hover {
     transform: scale(1.05);
     box-shadow: 0 0 25px rgba(255, 0, 0, 0.9);
+}
+
+.gen-images {
+    width: 100%;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar button {
+    height: 40px;
+    a
 }

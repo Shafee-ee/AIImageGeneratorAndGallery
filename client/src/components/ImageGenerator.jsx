@@ -60,7 +60,7 @@ const ImageGenerator = () => {
                 </div>
                 <div className="right-section">
                     {loading ? <p>Generating image....</p> : imageUrl ? (
-                        <img src={imageUrl} alt="Generated" />
+                        <img className="gen-images" src={imageUrl} alt="Generated" />
                     ) : (
                         <p>Image result displayed here</p>
                     )}
