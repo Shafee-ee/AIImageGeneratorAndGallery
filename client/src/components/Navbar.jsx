@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import './ImageGenerator.css'
+import './Navbar.css';
 
-
-
-const Navbar = () => {
-    const [buttonName, setButtonName] = useState("UNIT 00")
+const Navbar = ({ toggleTheme, theme }) => {
     return (
         <div className="navbar">
             <h2>AI Image Generator</h2>
-            <button >UNIT 00</button>
+            <button onClick={toggleTheme}>{theme === "dark" ? "light mode" : "dark mode"}</button>
         </div>
     );
 }
-export default Navbar
+export default Navbar;
+

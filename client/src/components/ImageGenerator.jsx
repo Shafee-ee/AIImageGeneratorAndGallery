@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import './ImageGenerator.css'
 import Gallery from './Gallery.jsx'
+import './ImageGenerator.css'
 
 const ImageGenerator = () => {
     const [prompt, setPrompt] = useState('');
@@ -47,29 +47,31 @@ const ImageGenerator = () => {
 
     return (
         <>
-            <div className="container">
-                <div className="left-section">
-                    <h4>AI image generator</h4>
-                    <input
-                        type="text"
-                        placeholder='Enter Prompt....'
-                        value={prompt}
-                        onChange={(e) => setPrompt(e.target.value)}
-                    />
-                    <button onClick={handleGenerate}>Generate</button>
+            <div className="page">
+                <div className="container">
+                    <div className="prompt">
+
+                        <input
+                            type="text"
+                            placeholder='Describe what you want to see with phrases and commas...'
+                            value={prompt}
+                            onChange={(e) => setPrompt(e.target.value)}
+                        />
+                        <button onClick={handleGenerate}>Generate</button>
+                    </div>
+                    <div className="display-image">
+                        {loading ? <p>Generating image....</p> : imageUrl ? (
+                            <img className="gen-images" src={imageUrl} alt="Generated" />
+                        ) : (
+                            <p>...YOUR IMAGE HERE...</p>
+                        )}
+
+
+                    </div>
+
                 </div>
-                <div className="right-section">
-                    {loading ? <p>Generating image....</p> : imageUrl ? (
-                        <img className="gen-images" src={imageUrl} alt="Generated" />
-                    ) : (
-                        <p>Image result displayed here</p>
-                    )}
-
-
-                </div>
-
+                <Gallery />
             </div>
-            <Gallery />
         </>
     );
 

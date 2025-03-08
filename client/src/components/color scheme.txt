@@ -1,0 +1,9 @@
+#651fff - light blue
+#311b92- dark blue
+#EDE7f6- fade blue
+#D1c4e9- lightest blue
+#3f6d4e	(63,109,78)
+#8bd450	(139,212,80)
+#1d1a2f	(29,26,47)
+#965fd4	(150,95,212)
+#734f9a	(115,79,154)
