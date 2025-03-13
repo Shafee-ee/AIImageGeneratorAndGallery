@@ -18,6 +18,14 @@
     text-align: center;
 }
 
+.dark .container {
+    background-color: #311b92;
+}
+
+.light .container {
+    background-color: #965fd4;
+}
+
 .prompt {
     display: flex;
     justify-content: space-between;
