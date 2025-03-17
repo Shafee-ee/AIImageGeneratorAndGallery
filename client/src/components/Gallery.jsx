@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import axiosInstance from '../api.js';
+
 
 const Gallery = () => {
     const [gallery, setGallery] = useState([]);
@@ -7,7 +9,7 @@ const Gallery = () => {
     useEffect(() => {
         const fetchSavedImages = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/images/saved');
+                const response = await axiosInstance.get('/images/saved');
                 console.log("Fetched Images:", response.data);
                 if (response.data) {
                     setGallery(response.data.map(item => item.imageUrl));

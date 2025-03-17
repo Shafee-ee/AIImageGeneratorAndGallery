@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import imageRoutes from "./routes/imageRoutes.js";
+import authRoutes from "./routes/auth.js";
 
 
 dotenv.config();//Loading environment variables
@@ -11,9 +12,10 @@ const app = express();
 
 
 //middleWare
-
-app.use(cors());
 app.use(express.json({ limit: "50mb" }));
+
+app.use("/api/auth", authRoutes);
+app.use(cors());
 app.use(express.urlencoded({ limit: "50mb", extended: true }))
 
 app.use("/api/images", imageRoutes);

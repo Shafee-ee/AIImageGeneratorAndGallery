@@ -1,5 +1,5 @@
 import express from "express";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { body, validationResult } from "express-validator";
 import User from "../models/user.js";
@@ -17,6 +17,7 @@ router.post(
             .withMessage("Password must be at least 6 characters"),
     ],
     async (req, res) => {
+        console.log("Request body:", req.body);
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
@@ -29,23 +30,29 @@ router.post(
                 return res.status(400).json({ msg: "User already exists" });
             }
 
-            const salt = await bcrypt.genSalt(10);
-            const hashedPassword = await bcrypt.hash(password, salt);
 
-            user = new User({
-                username,
-                email,
-                password: hashedPassword,
-            });
 
-            await user.save();
+            //create new User instance
+            user = new User(
+                {
+                    username,
+                    email,
+                    password: password,
+                }
+            );
 
-            const payload = { user: { id: user.id } };
+
+            // save user to database
+            const savedUser = await user.save();
+            console.log("Stored password in DB:", savedUser.password);
+
+            //Generating payload
+            const payload = { user: { id: savedUser.id } };
             const token = jwt.sign(payload, process.env.JWT_SECRET, {
                 expiresIn: "1h",
-            });
-
+            })
             res.json({ token });
+
         } catch (error) {
             console.error(error.message);
             res.status(500).send("Server error");
@@ -73,8 +80,12 @@ router.post(
             if (!user) {
                 return res.status(400).json({ msg: "Invalid credentials" });
             }
+            //debuging (remove after fixed)
+            console.log("Entered Password:", password);
+            console.log("Stored Password:", user.password)
 
             const isMatch = await bcrypt.compare(password, user.password);
+            console.log("Password Match:", isMatch);
             if (!isMatch) {
                 return res.status(400).json({ msg: "Invalid credentials" });
             }

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import Gallery from './Gallery.jsx'
 import './ImageGenerator.css'
+import axiosInstance from '../api.js';
 
 const ImageGenerator = () => {
     const [prompt, setPrompt] = useState('');
@@ -16,7 +16,7 @@ const ImageGenerator = () => {
 
         setLoading(true);
         try {
-            const response = await axios.post('http://localhost:5000/api/images/generate', {
+            const response = await axiosInstance.post('/images/generate', {
                 prompt,
             });
 
@@ -25,7 +25,7 @@ const ImageGenerator = () => {
 
                 //save generated image to database
 
-                await axios.post('http://localhost:5000/api/images/save', {
+                await axiosInstance.post('/images/save', {
                     imageBase64: response.data.imageBase64,
                     prompt,
                 });
