@@ -5,12 +5,12 @@ import './ImageGenerator.css'
 import axiosInstance from '../api.js';
 
 const ImageGenerator = () => {
-    const [prompt, setPrompt] = useState('');
-    const [imageUrl, setImageUrl] = useState('');
-    const [loading, setLoading] = useState(false);
+    const [prompt, setPrompt] = useState(''); // traking the input
+    const [imageUrl, setImageUrl] = useState('');//storing the generated image URL
+    const [loading, setLoading] = useState(false); // Track loading state
 
 
-
+    // function to generate image based on prompts 
     const handleGenerate = async () => {
         if (!prompt.trim()) return;
 
@@ -23,19 +23,18 @@ const ImageGenerator = () => {
             if (response.data.imageBase64) {
                 setImageUrl(response.data.imageBase64);
 
-                //save generated image to database
 
-                await axiosInstance.post('/images/save', {
-                    imageBase64: response.data.imageBase64,
-                    prompt,
-                });
+                // await axiosInstance.post('/images/save', {
+                //     imageBase64: response.data.imageBase64,
+                //     prompt,
+                // });
 
 
             } else {
                 console.error("no image URL received");
             }
 
-            setPrompt('');
+            setPrompt('');// clear the prompt after generation
 
         } catch (error) {
             console.error('Error generating image:', error);
@@ -43,6 +42,29 @@ const ImageGenerator = () => {
             setLoading(false);
         }
     }
+
+    // function to save image after generation
+
+    const handleSaveImage = async () => {
+        if (!imageUrl) return;
+
+        try {
+            await axiosInstance.post('/images/save', {
+                imageBase64: imageUrl,
+                prompt,
+            })
+            alert('Image saved successfully');
+
+        } catch (error) {
+            console.error('Error saving image:', error);
+        }
+    };
+
+    //function to clear the current image
+    const handleClearImage = () => {
+        setImageUrl('');
+    };
+
 
 
     return (
@@ -65,9 +87,14 @@ const ImageGenerator = () => {
                         ) : (
                             <p>...YOUR IMAGE HERE...</p>
                         )}
-
-
                     </div>
+
+                    {imageUrl && (
+                        <div className="buttons">
+                            <button onClick={handleSaveImage}>Save Image</button>
+                            <button onClick={handleClearImage}>Clear Image</button>
+                        </div>
+                    )}
 
                 </div>
                 <Gallery />
