@@ -5,6 +5,8 @@ import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
+import Login from './components/Login';
+import Register from './components/Register';
 
 function App() {
     const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
@@ -23,6 +25,8 @@ function App() {
             <div className={`app-container ${theme}`}>
                 <Navbar toggleTheme={toggleTheme} theme={theme} />
                 <Routes>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
                     <Route path="/" element={<ImageGenerator />} />
                     <Route
                         path="/dashboard"
@@ -40,4 +44,4 @@ function App() {
     );
 }
 
-export default App
+export default App 
