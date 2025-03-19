@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import ImageGenerator from './components/ImageGenerator';
 import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
@@ -21,7 +21,7 @@ function App() {
     };
 
     return (
-        <Router>
+        <Router basename="/">
             <div className={`app-container ${theme}`}>
                 <Navbar toggleTheme={toggleTheme} theme={theme} />
                 <Routes>

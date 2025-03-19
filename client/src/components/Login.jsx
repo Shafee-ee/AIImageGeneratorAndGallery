@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axiosInstance from '../api.js';
 
 const Login = () => {
+    console.log("Login component loaded");
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 

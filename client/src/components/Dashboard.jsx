@@ -3,6 +3,9 @@ import axiosInstance from '../api';
 
 
 const Dashboard = () => {
+
+    console.log("Login component loaded");
+
     const [gallery, setGallery] = useState([]);
 
     //fetch User's gallery
