@@ -5,21 +5,12 @@ import './App.css';
 
 
 function App() {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light")
 
-  useEffect(() => {
-    document.body.className = theme;
-    localStorage.setItem("theme", theme)
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark")
-  }
   return (
-    <div className={`app-container ${theme}`}>
-      <Navbar toggleTheme={toggleTheme} theme={theme} />
+    <div >
+      <Navbar />
       <ImageGenerator />
-    </div>
+    </div >
 
   )
 }

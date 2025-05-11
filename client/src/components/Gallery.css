@@ -1,0 +1,37 @@
+/* Gallery Styles */
+.gallery {
+    margin-top: 40px;
+    color: #ddd;
+    text-align: center;
+}
+
+.gallery h4 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 equal columns */
+    gap: 20px;
+    padding: 10px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: auto;
+    /* Maintain aspect ratio */
+    max-height: 300px;
+    /* Limit image height */
+    object-fit: cover;
+    border-radius: 0px;
+    /* Sharp edges */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.3);
+    /* Increase image size by 1.5x on hover */
+}

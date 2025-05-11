@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import axiosInstance from '../api.js';
+import './gallery.css'
 
 
 const Gallery = () => {
