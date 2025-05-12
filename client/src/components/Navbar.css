@@ -1,9 +1,9 @@
 @import Url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500&display=swap');
 
 .navbar {
-    background: linear-gradient(90deg, #333333, #444444, #555555, #666666);
+    background: linear-gradient(90deg, #333333, #444444, #545252, #393838);
     background-size: 200% 100%;
-    animation: moveBackground 20s ease-in-out infinite;
+    animation: moveBackground 10s ease-in-out infinite;
     padding: 20 px;
     display: flex;
     justify-content: center;
@@ -36,4 +36,9 @@
     text-transform: uppercase;
     color: white;
     margin: 0;
+    color: #fff;
+    text-shadow:
+        1px 1px 1px #fff,
+        /* highlight */
+        -2px -2px -1px #000;
 }
