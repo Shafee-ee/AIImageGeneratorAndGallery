@@ -79,7 +79,7 @@ const ImageGenerator = () => {
                             value={prompt}
                             onChange={(e) => setPrompt(e.target.value)}
                         />
-                        <button onClick={handleGenerate}>Generate</button>
+                        <button onClick={handleGenerate}>Generate Your Image</button>
                     </div>
                     <div className="display-image">
                         {loading ? <p>Generating image....</p> : imageUrl ? (
